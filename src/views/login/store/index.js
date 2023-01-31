@@ -30,7 +30,6 @@ export const loginSlice = createSlice({
   initialState,
   reducers: {
     setFieldsValues: (state, action) => {
-      console.log(state, action)
       state.fields[action.payload.field] = action.payload.value
     },
     reset: () => initialState

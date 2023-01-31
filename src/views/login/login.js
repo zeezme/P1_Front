@@ -18,7 +18,6 @@ export default function Login() {
 
   useEffect(() => {
     if (user !== null) {
-      console.log('a')
       navigate('/paywall')
       window.location.reload()
     }

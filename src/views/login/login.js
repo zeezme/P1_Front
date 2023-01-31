@@ -3,7 +3,6 @@ import { ArrowRight } from 'react-feather'
 import { Button, Card, CardBody, CardFooter, CardHeader, Col, Input, Label, Row } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFieldsValues, signin } from './store'
-import { verifyJwt } from '../../services/verifyJwt'
 import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
@@ -11,19 +10,19 @@ export default function Login() {
 
   const loginFields = useSelector((state) => state.login.fields)
 
+  const isLogged = useSelector((state) => state.login.login)
+
+  const user = localStorage.getItem('user')
+
   const navigate = useNavigate()
 
-  const testJwt = async () => {
-    const res = await verifyJwt()
-
-    if (res.message === 'Authorized') {
-      navigate('/paywall')
-    }
-  }
-
   useEffect(() => {
-    testJwt()
-  }, [])
+    if (user !== null) {
+      console.log('a')
+      navigate('/paywall')
+      window.location.reload()
+    }
+  }, [isLogged])
 
   const onChange = (field, value) => {
     dispatch(
@@ -36,7 +35,6 @@ export default function Login() {
 
   const submit = () => {
     dispatch(signin(loginFields))
-    navigate('/t2')
   }
 
   return (

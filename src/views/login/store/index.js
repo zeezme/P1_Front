@@ -12,12 +12,16 @@ export const signin = createAsyncThunk('login/signin', async (data) => {
     return res.data
   }
 })
+export const logout = createAsyncThunk('login/logout', async () => {
+  localStorage.removeItem('user')
+})
 
 const initialState = {
   fields: {
     email: '',
     password: ''
   },
+  login: false,
   user: {}
 }
 
@@ -26,12 +30,14 @@ export const loginSlice = createSlice({
   initialState,
   reducers: {
     setFieldsValues: (state, action) => {
+      console.log(state, action)
       state.fields[action.payload.field] = action.payload.value
     },
     reset: () => initialState
   },
   extraReducers: (builder) => {
     builder.addCase(signin.fulfilled, (state, action) => {
+      state.login = true
       state.user = action.payload
     })
   }

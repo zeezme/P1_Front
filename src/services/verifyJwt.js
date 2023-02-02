@@ -1,7 +1,10 @@
 import axios from 'axios'
+import Cookies from 'universal-cookie'
 
 export const verifyJwt = async () => {
-  const userData = JSON.parse(localStorage.getItem('user'))
+  const cookies = new Cookies()
+
+  const userData = cookies.get('token')
 
   const parseJwt = (token) => {
     try {
@@ -11,7 +14,7 @@ export const verifyJwt = async () => {
     }
   }
 
-  const Api = axios.create({
+  const api = axios.create({
     baseURL: 'http://localhost:8080/api/test',
     timeout: 8000,
     headers: {
@@ -23,10 +26,10 @@ export const verifyJwt = async () => {
     try {
       const decodedJwt = parseJwt(userData?.accessToken)
       if (decodedJwt.exp * 1000 < Date.now()) {
-        localStorage.removeItem('user')
+        cookies.remove('token')
       }
 
-      const res = await Api.get('/user')
+      const res = await api.get('/user')
 
       return { status: res.status, message: 'Authorized' }
     } catch (error) {

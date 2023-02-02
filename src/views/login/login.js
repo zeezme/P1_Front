@@ -2,26 +2,28 @@ import React, { useEffect } from 'react'
 import { ArrowRight } from 'react-feather'
 import { Button, Card, CardBody, CardFooter, CardHeader, Col, Input, Label, Row } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { setFieldsValues, signin } from './store'
+import { setFieldsValues, setUser } from './store'
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
+
+import axios from 'axios'
 
 export default function Login() {
+  const [cookies, setCookie] = useCookies(['token'])
   const dispatch = useDispatch()
 
   const loginFields = useSelector((state) => state.login.fields)
 
-  const isLogged = useSelector((state) => state.login.login)
-
-  const user = localStorage.getItem('user')
+  const user = cookies['token']
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user !== null) {
+    if (user !== undefined) {
       navigate('/paywall')
       window.location.reload()
     }
-  }, [isLogged])
+  }, [user])
 
   const onChange = (field, value) => {
     dispatch(
@@ -32,8 +34,17 @@ export default function Login() {
     )
   }
 
-  const submit = () => {
-    dispatch(signin(loginFields))
+  const submit = async () => {
+    const res = await axios.post('http://localhost:8080/api/auth/signin', {
+      username: loginFields.email,
+      password: loginFields.password
+    })
+    if (res.status === 200) {
+      setCookie('token', res.data)
+
+      dispatch(setUser(res.data))
+      return res.data
+    }
   }
 
   return (

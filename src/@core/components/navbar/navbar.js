@@ -2,10 +2,13 @@ import React from 'react'
 import { Button, Col, Navbar, NavbarBrand, Row } from 'reactstrap'
 import { MessageCircle, LogIn, ShoppingCart, User } from 'react-feather'
 import { Link } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 
 // eslint-disable-next-line react/prop-types
 export default function KitNavbar() {
-  const user = JSON.parse(localStorage.getItem('user'))
+  const [cookies] = useCookies(['token'])
+
+  const user = cookies['token']
 
   return (
     <>

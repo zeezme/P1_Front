@@ -1,13 +1,13 @@
 import React from 'react'
 import { Spinner } from 'reactstrap'
 import { verifyJwt } from '../../services/verifyJwt'
+
 const Login = React.lazy(() => import('../../views/login/login'))
 const PayWall = React.lazy(() => import('../../views/paywall/home'))
 
 const getShow = async () => {
   const res = await verifyJwt()
 
-  // eslint-disable-next-line no-unneeded-ternary
   return res.message === 'Authorized'
 }
 

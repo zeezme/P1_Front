@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button, Col, Navbar, NavbarBrand, Row } from 'reactstrap'
+import { Col, Navbar, NavbarBrand, Row } from 'reactstrap'
 import { MessageCircle, LogIn, ShoppingCart, User } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
+import LogoutButton from '../logoutButton/logoutButton'
 
 // eslint-disable-next-line react/prop-types
 export default function KitNavbar() {
@@ -51,6 +52,7 @@ export default function KitNavbar() {
                   <User className="cursor-pointer"></User>
                 </Link>
               </Col>
+              {user && <LogoutButton />}
             </Row>
           </Col>
         </Row>

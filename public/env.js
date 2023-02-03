@@ -198,7 +198,7 @@ window.env = {
   "npm_package_devDependencies__babel_preset_react": "^7.18.6",
   "npm_package_eslintConfig_extends_0": "react-app",
   "npm_package_eslintConfig_extends_1": "react-app/jest",
-  "npm_package_gitHead": "4a68081411d2689b299e6722c8245328dd294564",
+  "npm_package_gitHead": "5afa53f8f26ccb6b980a3b91c38266bb3d7f4b4f",
   "npm_package_name": "client",
   "npm_package_private": "true",
   "npm_package_scripts_build": "react-scripts build",

@@ -15,7 +15,8 @@ import {
   FormGroup,
   Input,
   Label,
-  Row
+  Row,
+  Spinner
 } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFieldsValues, setUser } from './store'
@@ -52,23 +53,29 @@ export default function Login() {
 
   const [loginErrorUser, setLoginErrorUser] = useState({ invalid: false })
   const [loginErrorPass, setLoginErrorPass] = useState({ invalid: false })
+  const [loading, setLoading] = useState(false)
 
   const submit = async () => {
+    setLoading(true)
     try {
       const res = await axios.post('http://localhost:8080/api/auth/signin', {
         username: loginFields.email,
         password: loginFields.password
       })
       if (res.status === 200) {
+        setLoading(false)
+
         setCookie('token', res.data)
         dispatch(setUser(res.data))
         return res.data
       }
     } catch (error) {
       if (error.response.data.message === 'User Not found.') {
+        setLoading(false)
         setLoginErrorUser({ invalid: true })
       }
       if (error.response.data.message === 'Invalid Password!') {
+        setLoading(false)
         setLoginErrorPass({ invalid: true })
       }
     }
@@ -109,7 +116,7 @@ export default function Login() {
                     <FormFeedback>Senha invalida!</FormFeedback>
                   </FormGroup>
                   <Button color="success" className="w-100" onClick={submit}>
-                    <ArrowRight className="text-light" />
+                    {loading ? <Spinner size="sm" /> : <ArrowRight className="text-light" />}
                   </Button>
                 </Form>
               </div>

@@ -1,6 +1,15 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { Fragment } from 'react'
+import { Col, Row } from 'reactstrap'
+import ProductCard from '../../@core/components/productCard/productCard'
 
 export default function Home() {
-  return <></>
+  return (
+    <Fragment>
+      <Row className="mt-3">
+        <Col lg={3}>
+          <ProductCard />
+        </Col>
+      </Row>
+    </Fragment>
+  )
 }

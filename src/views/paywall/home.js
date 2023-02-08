@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { CSVLink } from 'react-csv'
 import { Button } from 'reactstrap'
 
@@ -32,10 +32,10 @@ export default function PayWall() {
   }
 
   return (
-    <>
-      <Button tag={CSVLink} {...csvReport} separator=";">
+    <Fragment>
+      <Button className="mt-2" tag={CSVLink} {...csvReport} separator=";">
         Gerar Relatório
       </Button>
-    </>
+    </Fragment>
   )
 }

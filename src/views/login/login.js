@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { AlertTriangle, ArrowRight } from 'react-feather'
 import {
   Button,
@@ -82,10 +82,10 @@ export default function Login() {
   }
 
   return (
-    <>
+    <Fragment>
       <Row className="d-flex justify-content-center">
         <Col lg={4}>
-          <Card className="mt-5 shadow">
+          <Card className="mt-5 shadow-sm ">
             <CardBody>
               <div className="container">
                 <CardTitle className="h4 text-center">Entrar</CardTitle>
@@ -115,7 +115,7 @@ export default function Login() {
                       onChange={(e) => onChange('password', e.target.value)}></Input>
                     <FormFeedback>Senha invalida!</FormFeedback>
                   </FormGroup>
-                  <Button color="success" className="w-100" onClick={submit}>
+                  <Button color="success" className="w-100 mt-3" onClick={submit}>
                     {loading ? <Spinner size="sm" /> : <ArrowRight className="text-light" />}
                   </Button>
                 </Form>
@@ -124,6 +124,6 @@ export default function Login() {
           </Card>
         </Col>
       </Row>
-    </>
+    </Fragment>
   )
 }

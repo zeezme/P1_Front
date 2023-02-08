@@ -15,10 +15,10 @@ export default function LogoutButton() {
   }
 
   return (
-    <Col className="d-flex justify-content-center text-light">
+    <Col className="d-flex justify-content-center">
       <Button color="transparent" onClick={logout}>
-        <p className="m-0 text-light">Sair</p>
-        <LogOut className="text-light" />
+        <p className="m-0 text-primary">Sair</p>
+        <LogOut size={21} className="text-primary" />
       </Button>
     </Col>
   )

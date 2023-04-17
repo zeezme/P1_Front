@@ -15,22 +15,22 @@ export default function KitNavbar() {
 
   return (
     <Fragment>
-      <Navbar className="mb-0" color={'transparent'}>
+      <Navbar className="mb-0" color={''}>
         <Row className="w-100">
-          <Col lg={2}></Col>
-          <Col lg={8} sm={1} className="d-flex justify-content-center">
+          <Col lg={2} sm={1} className="d-flex justify-content-start">
             <NavbarBrand href="/">
-              <img
+              {/*    <img
                 alt="logo"
                 src="/logo.png"
                 style={{
                   height: 40,
                   width: 40
                 }}
-              />
-              <NavbarText className="ms-2 fw-bolder text-dark">UNBOREFY</NavbarText>
+              /> */}
+              <NavbarText className="ms-2 fw-bolder text-primary">LEAP</NavbarText>
             </NavbarBrand>
           </Col>
+          <Col lg={8}></Col>
           <Col lg={2} sm={6} className="d-flex justify-content-end">
             <Row className="">
               <Col className="d-flex justify-content-center text-dark">

@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { Fragment } from 'react'
 import { CSVLink } from 'react-csv'
-import { Button } from 'reactstrap'
+import { User } from 'react-feather'
+import { Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
 
 export default function PayWall() {
   const headers = [
@@ -33,9 +34,32 @@ export default function PayWall() {
 
   return (
     <Fragment>
-      <Button className="mt-2" tag={CSVLink} {...csvReport} separator=";">
-        Gerar Relatório
-      </Button>
+      <div className="container-xxl mt-5">
+        <Row>
+          <Col lg={6}>
+            <Card>
+              <CardHeader>
+                <span className="fw-bolder text-primary">Sua próxima consulta</span>
+              </CardHeader>
+              <CardBody className="text-primary d-flex align-items-center justify-content-center">
+                <User size={100}></User>
+                <div className="d-flex flex-column align-items-center justify-content-center">
+                  <span className="h2 ms-2">João dos Santos</span>
+                  <span>(55) 5555 - 5555</span>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col lg={6}>
+            <Card>
+              <CardHeader>
+                <span className="fw-bolder text-primary">Consultas este mês </span>
+              </CardHeader>
+              <CardBody>A</CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </div>
     </Fragment>
   )
 }

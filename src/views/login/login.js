@@ -83,48 +83,41 @@ export default function Login() {
   }
 
   return (
-    <div
-      className="position-absolute w-100 overflow-hidden d-flex flex-row justify-content-end  "
-      style={{ left: '0' }}>
-      <div className=" flex-grow-1 d-flex align-items-center justify-content-center">
-        <LoginSvg />
-      </div>
-      <div className="" style={{ width: '380px', height: 'calc(100vh - 78px )' }}>
-        <Card className="mt-5 me-5">
-          <CardBody>
-            <Form>
-              <FormGroup>
-                <Label for="user" className="fw-bold">
-                  Usuário
-                </Label>
-                <Input
-                  {...loginErrorUser}
-                  name="user"
-                  onChange={(e) => {
-                    onChange('email', e.target.value)
-                  }}
-                />
-                <FormFeedback>O nome de usuário não foi encontrado!</FormFeedback>
-              </FormGroup>
+    <div className="d-flex flex-row justify-content-end align-items-start m-5 ">
+      <Card className="" style={{ width: '300px' }}>
+        <CardBody>
+          <Form>
+            <FormGroup>
+              <Label for="user" className="fw-bold">
+                Usuário
+              </Label>
+              <Input
+                {...loginErrorUser}
+                name="user"
+                onChange={(e) => {
+                  onChange('email', e.target.value)
+                }}
+              />
+              <FormFeedback>O nome de usuário não foi encontrado!</FormFeedback>
+            </FormGroup>
 
-              <FormGroup>
-                <Label for="password" className="fw-bold">
-                  Senha
-                </Label>
-                <Input
-                  {...loginErrorPass}
-                  type="password"
-                  name="password"
-                  onChange={(e) => onChange('password', e.target.value)}></Input>
-                <FormFeedback>Senha invalida!</FormFeedback>
-              </FormGroup>
-              <Button color="success" className="w-100 mt-3" onClick={submit}>
-                {loading ? <Spinner size="sm" /> : <ArrowRight className="text-light" />}
-              </Button>
-            </Form>
-          </CardBody>
-        </Card>
-      </div>
+            <FormGroup>
+              <Label for="password" className="fw-bold">
+                Senha
+              </Label>
+              <Input
+                {...loginErrorPass}
+                type="password"
+                name="password"
+                onChange={(e) => onChange('password', e.target.value)}></Input>
+              <FormFeedback>Senha invalida!</FormFeedback>
+            </FormGroup>
+            <Button color="success" className="w-100 mt-3" onClick={submit}>
+              {loading ? <Spinner size="sm" /> : <ArrowRight className="text-light" />}
+            </Button>
+          </Form>
+        </CardBody>
+      </Card>
     </div>
   )
 }

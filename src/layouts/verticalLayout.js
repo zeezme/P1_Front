@@ -1,16 +1,18 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import React, { Fragment } from 'react'
 import { Outlet } from 'react-router-dom'
 import KitNavbar from '../@core/components/navbar/navbar'
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Container, Row, Col } from 'reactstrap'
+import Sidebar from '../@core/components/sidebar/sidebar'
 
 export const VerticalLayout = () => {
-  const selectedLayout = 'light' //Será determinado pela store
-
   return (
-    <div className="">
+    <Fragment>
       <KitNavbar />
-      <div className="container-xxl kit-content-container ">
-        <Outlet context={[selectedLayout]} />
+      <div className="d-flex flex-row">
+        <Sidebar />
+        <Outlet />
       </div>
-    </div>
+    </Fragment>
   )
 }

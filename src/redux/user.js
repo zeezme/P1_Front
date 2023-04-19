@@ -5,7 +5,8 @@ export const test = createAsyncThunk('apps/findApp', async (data) => {
 })
 
 const initialState = {
-  fields: {}
+  fields: {},
+  sidebar: false
 }
 
 export const appsSlice = createSlice({
@@ -14,6 +15,9 @@ export const appsSlice = createSlice({
   reducers: {
     setFieldsValues: (state, action) => {
       state.fields[action.payload.field] = action.payload.value
+    },
+    setSidebar: (state) => {
+      state.sidebar = !state.sidebar
     },
     reset: () => initialState
   },
@@ -24,6 +28,6 @@ export const appsSlice = createSlice({
   }
 })
 
-export const { setFilterValues, setFieldsValues, reset } = appsSlice.actions
+export const { setFilterValues, setFieldsValues, setSidebar, reset } = appsSlice.actions
 
 export default appsSlice.reducer

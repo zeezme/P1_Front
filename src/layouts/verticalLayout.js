@@ -9,8 +9,8 @@ export const VerticalLayout = () => {
   return (
     <Fragment>
       <KitNavbar />
-      <div className="d-flex flex-row">
-        <Sidebar />
+      <Sidebar />
+      <div className="d-flex flex-row justify-content-center">
         <Outlet />
       </div>
     </Fragment>

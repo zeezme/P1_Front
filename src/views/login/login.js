@@ -83,7 +83,7 @@ export default function Login() {
   }
 
   return (
-    <div className="d-flex flex-row justify-content-end align-items-start m-5 ">
+    <div className="d-flex flex-row justify-content-center align-items-start m-5 container-xxl">
       <Card className="" style={{ width: '300px' }}>
         <CardBody>
           <Form>

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Spinner } from 'reactstrap'
 import { verifyJwt } from '../../services/verifyJwt'
+import Loading from '../../@core/components/loading'
 
 const Login = React.lazy(() => import('../../views/login/login'))
 const PayWall = React.lazy(() => import('../../views/paywall/home'))
@@ -17,7 +17,7 @@ export const routes = [
     name: 'login',
     path: '/t2',
     element: (
-      <React.Suspense fallback={<Spinner />}>
+      <React.Suspense fallback={<Loading />}>
         <Login />
       </React.Suspense>
     ),
@@ -28,7 +28,7 @@ export const routes = [
     name: 'paywall',
     path: '/paywall',
     element: (
-      <React.Suspense fallback={<Spinner />}>
+      <React.Suspense fallback={<Loading />}>
         <PayWall />
       </React.Suspense>
     ),

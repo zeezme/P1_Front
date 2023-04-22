@@ -6,7 +6,6 @@ import { routes } from './routes'
 const NotFound = React.lazy(() => import('../@core/components/not-found/not-found'))
 /* const Home = React.lazy(() => import('../views/home/home')) */
 import Home from '../views/home/home'
-const Login = React.lazy(() => import('../views/login/login'))
 const NoPermission = React.lazy(() => import('../@core/components/no-permission/no-permission'))
 
 export const Router = () => {

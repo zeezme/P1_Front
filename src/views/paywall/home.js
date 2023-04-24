@@ -1,15 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { Fragment } from 'react'
-import { CSVLink } from 'react-csv'
 import { User } from 'react-feather'
-import { Button, ButtonToolbar, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
+import { Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
 
 export default function PayWall() {
   return (
     <Fragment>
       <div className="mt-5 container-xxl">
         <Row>
-          <Col lg={6}>
+          <Col lg={6} className="mb-4">
             <Card className="h-100">
               <CardHeader>
                 <span className="fw-bolder text-primary">Sua próxima consulta</span>
@@ -49,7 +48,7 @@ export default function PayWall() {
           </Col>
         </Row>
         <Row className="mt-4">
-          <Col lg={4}>
+          <Col lg={4} className="mb-4">
             <Card>
               <CardHeader>
                 <span className="fw-bolder text-primary">Opções</span>

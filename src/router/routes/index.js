@@ -15,7 +15,7 @@ export const routes = [
   {
     id: 1,
     name: 'login',
-    path: '/t2',
+    path: '/login',
     element: (
       <React.Suspense fallback={<Loading />}>
         <Login />

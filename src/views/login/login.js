@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { Fragment, useEffect, useState } from 'react'
-import { AlertTriangle, ArrowRight } from 'react-feather'
+import React, { useEffect, useState } from 'react'
+import { ArrowRight } from 'react-feather'
 import {
   Button,
   Card,
@@ -24,7 +23,6 @@ import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 
 import axios from 'axios'
-import LoginSvg from '../../@core/components/LoginSvg'
 
 export default function Login() {
   const [cookies, setCookie] = useCookies(['token'])

@@ -45,6 +45,13 @@
     width: 80px;
   }
 
+  .sidebar-none {
+    position: absolute;
+    transition: transform 0.5s ease-out;
+    width: 80px;
+    display: none;
+  }
+
 .on-hover:hover {
     background-color: #1a651734;
 }

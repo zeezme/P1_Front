@@ -8,7 +8,7 @@ export default function NoPermission() {
       className="d-flex flex-column align-items-center justify-content-center text-dark"
       style={{ height: '80vh' }}>
       <div className="h1">Você não tem permissão para acessar esta página</div>
-      <Button className="m-3" color="success" tag={Link} to="/t2">
+      <Button className="m-3" color="success" tag={Link} to="/login">
         Fazer login
       </Button>
     </div>

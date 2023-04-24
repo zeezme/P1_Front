@@ -9,7 +9,7 @@ export default function Loading() {
       <Spinner
         type="border"
         color="primary"
-        style={{ height: '150px', width: '150px', borderWidth: '20px' }}
+        style={{ height: '150px', width: '150px', borderWidth: '10px' }}
       />
     </div>
   )

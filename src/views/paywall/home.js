@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Fragment } from 'react'
-import { User } from 'react-feather'
-import { Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
+import { Menu, User } from 'react-feather'
+import { Button, Card, CardBody, CardFooter, CardHeader, Col, Row } from 'reactstrap'
 import { useCookies } from 'react-cookie'
 import { capitalizeFirstLetter } from '../../services/ordinary'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,7 +28,7 @@ export default function PayWall() {
           </Row>
         )}
         <Row>
-          <Col lg={6} className="mt-lg-4">
+          <Col lg={6} className=" mb-4">
             <Card className="h-100">
               <CardHeader>
                 <span className="fw-bolder text-primary">Sua próxima consulta</span>
@@ -42,7 +42,7 @@ export default function PayWall() {
               </CardBody>
             </Card>
           </Col>
-          <Col lg={2} className="mt-lg-4">
+          <Col lg={2} className=" mb-4">
             <Card className="h-100">
               <CardHeader>
                 <span className="fw-bolder text-primary">Total de pacientes</span>
@@ -53,7 +53,7 @@ export default function PayWall() {
               </CardBody>
             </Card>
           </Col>
-          <Col lg={2} className="mt-lg-4">
+          <Col lg={2} className=" mb-4">
             <Card className="h-100">
               <CardHeader>
                 <span className="fw-bolder text-primary"></span>
@@ -61,7 +61,7 @@ export default function PayWall() {
               <CardBody className="text-primary d-flex align-items-center justify-content-center"></CardBody>
             </Card>
           </Col>
-          <Col lg={2} className="mt-lg-4">
+          <Col lg={2} className="mb-4">
             <Card className="h-100">
               <CardHeader>
                 <span className="fw-bolder text-primary"></span>
@@ -71,12 +71,63 @@ export default function PayWall() {
           </Col>
         </Row>
         <Row>
-          <Col lg={12} className="mt-4">
+          <Col lg={12} className="">
             <Card>
               <CardHeader>
-                <span className="fw-bolder text-primary">Sua próxima consulta</span>
+                <span className="fw-bolder text-primary">Consultas do dia</span>
               </CardHeader>
-              <CardBody>B</CardBody>
+              <CardBody>
+                <Row>
+                  <Col className="mb-sm-0 mb-4">
+                    <Card role="button" outline color="primary">
+                      <CardBody className="d-flex flex-column text-center">
+                        <span className="fw-bold text-primary">João</span>
+                        <span className="fw-bold text-primary">14:30</span>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                  <Col className="mb-sm-0 mb-4">
+                    <Card role="button" outline color="primary">
+                      <CardBody className="d-flex flex-column text-center">
+                        <span className="fw-bold text-primary">Maria</span>
+                        <span className="fw-bold text-primary">15:30</span>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                  <Col className="mb-sm-0 mb-4">
+                    <Card role="button" outline color="primary">
+                      <CardBody className="d-flex flex-column text-center">
+                        <span className="fw-bold text-primary">Paula</span>
+                        <span className="fw-bold text-primary">16:30</span>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                  <Col className="mb-sm-0 mb-4">
+                    <Card role="button" outline color="primary">
+                      <CardBody className="d-flex flex-column text-center">
+                        <span className="fw-bold text-primary">Cleber</span>
+                        <span className="fw-bold text-primary">17:30</span>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                  <Col className="mb-sm-0 mb-4">
+                    <Card role="button" outline color="primary">
+                      <CardBody className="d-flex flex-column text-center">
+                        <span className="fw-bold text-primary">Ronaldo</span>
+                        <span className="fw-bold text-primary">18:30</span>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                  <Col className="mb-sm-0 mb-4">
+                    <Card role="button" outline color="primary">
+                      <CardBody className="d-flex flex-column text-center">
+                        <span className="fw-bold text-primary">Pedro</span>
+                        <span className="fw-bold text-primary">19:30</span>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                </Row>
+              </CardBody>
             </Card>
           </Col>
         </Row>

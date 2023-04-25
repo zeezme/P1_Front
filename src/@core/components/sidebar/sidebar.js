@@ -22,7 +22,7 @@ export default function Sidebar() {
           ? 'sidebar-none'
           : 'sidebar-open sidebar p-0'
       }>
-      <div className="d-flex flex-column justify-content-center align-items-center ">
+      <div className="d-flex flex-column justify-content-center align-items-center">
         <SidebarProps icon={<Box />} title={'Consultas'} />
         <SidebarProps icon={<FaCashRegister size={20} />} title={'Caixa'} />
       </div>

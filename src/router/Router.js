@@ -18,13 +18,14 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<VerticalLayout />}>
-          <Route path="/" element={<Home />} />
-          {routesJson.map((route) => {
-            return <Route key={route.id} {...route} />
-          })}
-          <Route path="*" element={<NotFound />} />
-        </Route>
+        {routesJson.map((route) => {
+          return (
+            <Route element={route.layout && <VerticalLayout />} key={route.id}>
+              <Route {...route} />
+            </Route>
+          )
+        })}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

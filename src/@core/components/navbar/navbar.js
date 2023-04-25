@@ -1,7 +1,6 @@
 /* eslint-disable prefer-template */
 import React from 'react'
 import { Button, Navbar, NavbarBrand, NavbarText, Row } from 'reactstrap'
-import { User, Box, Menu } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import LogoutButton from '../logoutButton/logoutButton'
@@ -9,6 +8,7 @@ import { capitalizeFirstLetter } from '../../../services/ordinary'
 import { ImLeaf } from 'react-icons/im'
 import { useDispatch, useSelector } from 'react-redux'
 import { togleSidebar } from '../../../redux/user'
+import { Menu } from 'react-feather'
 
 // eslint-disable-next-line react/prop-types
 export default function KitNavbar() {

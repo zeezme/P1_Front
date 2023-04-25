@@ -2,13 +2,33 @@
 import React, { Fragment } from 'react'
 import { User } from 'react-feather'
 import { Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
+import { useCookies } from 'react-cookie'
+import { capitalizeFirstLetter } from '../../services/ordinary'
+import { useDispatch, useSelector } from 'react-redux'
+import { BsPeople } from 'react-icons/bs'
+import { test } from './store'
 
 export default function PayWall() {
+  const dispatch = useDispatch()
+
+  const sidebarResponsive = useSelector((state) => state.user.sidebar_responsive)
+
+  const [cookies] = useCookies(['token'])
+
+  const user = cookies['token']
+
   return (
     <Fragment>
-      <div className="mt-5 container-xxl">
+      <div className="mt-2 container-xxl">
+        {!sidebarResponsive && (
+          <Row>
+            <span className="h3 text-primary">
+              Bem vindo {capitalizeFirstLetter(user.username)} !
+            </span>
+          </Row>
+        )}
         <Row>
-          <Col lg={6} className="mb-4">
+          <Col lg={6} className="mt-lg-4">
             <Card className="h-100">
               <CardHeader>
                 <span className="fw-bolder text-primary">Sua próxima consulta</span>
@@ -22,18 +42,31 @@ export default function PayWall() {
               </CardBody>
             </Card>
           </Col>
-          <Col lg={6}>
-            <Card className="mb-4">
+          <Col lg={2} className="mt-lg-4">
+            <Card className="h-100">
               <CardHeader>
-                <span className="fw-bolder text-primary">Consultas este mês </span>
+                <span className="fw-bolder text-primary">Total de pacientes</span>
               </CardHeader>
-              <CardBody>A</CardBody>
+              <CardBody className="text-primary d-flex flex-column align-items-center justify-content-center">
+                <BsPeople size={40} />
+                <span className="text-primary fw-bolder h4 mt-2">40</span>
+              </CardBody>
             </Card>
-            <Card>
+          </Col>
+          <Col lg={2} className="mt-lg-4">
+            <Card className="h-100">
               <CardHeader>
-                <span className="fw-bolder text-primary">Consultas este mês </span>
+                <span className="fw-bolder text-primary"></span>
               </CardHeader>
-              <CardBody>A</CardBody>
+              <CardBody className="text-primary d-flex align-items-center justify-content-center"></CardBody>
+            </Card>
+          </Col>
+          <Col lg={2} className="mt-lg-4">
+            <Card className="h-100">
+              <CardHeader>
+                <span className="fw-bolder text-primary"></span>
+              </CardHeader>
+              <CardBody className="text-primary d-flex align-items-center justify-content-center"></CardBody>
             </Card>
           </Col>
         </Row>
@@ -62,16 +95,19 @@ export default function PayWall() {
                     Desmarcar Paciente
                   </Button>
                   <Button color="primary">Cadastrar Paciente</Button>
+                  <Button color="primary mt-2" onClick={() => dispatch(test('teste'))}>
+                    Testar Paciente
+                  </Button>
                 </div>
               </CardBody>
             </Card>
           </Col>
-          <Col>
+          <Col className="mb-4">
             <Card>
               <CardHeader>
-                <span className="fw-bolder text-primary">Calendário</span>
+                <span className="fw-bolder text-primary">Consultas no dia</span>
               </CardHeader>
-              <CardBody>a</CardBody>
+              <CardBody></CardBody>
             </Card>
           </Col>
         </Row>

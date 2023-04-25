@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
+import Api from '../../../services/api'
+
 export const test = createAsyncThunk('home/test', async (data) => {
+  const response = await Api.get('/patient/get')
+
+  console.log(response)
   return data
 })
 

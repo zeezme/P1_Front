@@ -1,6 +1,16 @@
 /* eslint-disable prefer-template */
 import React from 'react'
-import { Button, Navbar, NavbarBrand, NavbarText, Row } from 'reactstrap'
+import {
+  Button,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Navbar,
+  NavbarBrand,
+  NavbarText,
+  Row,
+  UncontrolledDropdown
+} from 'reactstrap'
 import { Link, useLocation } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import LogoutButton from '../logoutButton/logoutButton'
@@ -8,10 +18,10 @@ import { capitalizeFirstLetter } from '../../../services/ordinary'
 import { ImLeaf } from 'react-icons/im'
 import { useDispatch, useSelector } from 'react-redux'
 import { togleSidebar } from '../../../redux/user'
-import { Menu } from 'react-feather'
+import { Info, Menu } from 'react-feather'
 
-// eslint-disable-next-line react/prop-types
-export default function KitNavbar() {
+// eslint-disable-next-line react/prop-types, no-unused-vars
+export default function KitNavbar({ screenWidth }) {
   const [cookies] = useCookies(['token'])
   const user = cookies['token']
   const sidebarResponsive = useSelector((state) => state.user.sidebar_responsive)
@@ -42,31 +52,55 @@ export default function KitNavbar() {
         </div>
 
         <div className="d-flex justify-content-end">
-          <div className="d-flex justify-content-center align-items-center text-dark ">
-            {!user?.username && (
+          {screenWidth <= 400 && (
+            <UncontrolledDropdown>
+              <DropdownToggle caret color="" className="text-primary">
+                <Info />
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>
+                  <p className="m-0 text-primary h5 fw-normal">Preços</p>
+                </DropdownItem>
+                <DropdownItem divider />
+
+                <DropdownItem>
+                  <p className="m-0 text-primary h5 fw-normal">Empresa</p>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem tag={Link} to="/login">
+                  <p className="m-0 text-primary h5 fw-normal">
+                    {user?.username ? capitalizeFirstLetter(user.username) : 'Login'}
+                  </p>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          )}
+          {!user?.username && screenWidth >= 400 && (
+            <div className="d-flex justify-content-center align-items-center text-dark ">
               <Button
                 color="transparent"
                 className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover">
                 <p className="m-0 text-primary h5 fw-normal">Preços</p>
               </Button>
-            )}
-          </div>
-          {!user?.username && (
+
+              <Button
+                color="transparent"
+                className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover">
+                <p className="m-0 text-primary h5 fw-normal">Empresa</p>
+              </Button>
+            </div>
+          )}
+          {screenWidth >= 400 && (
             <Button
               color="transparent"
-              className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover">
-              <p className="m-0 text-primary h5 fw-normal">Empresa</p>
+              tag={Link}
+              className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover "
+              to="/login">
+              <p className="m-0 text-primary h5 fw-normal">
+                {user?.username ? capitalizeFirstLetter(user.username) : 'Login'}
+              </p>
             </Button>
           )}
-          <Button
-            color="transparent"
-            tag={Link}
-            className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover "
-            to="/login">
-            <p className="m-0 text-primary h5 fw-normal">
-              {user?.username ? capitalizeFirstLetter(user.username) : 'Login'}
-            </p>
-          </Button>
           {user && <LogoutButton />}
         </div>
       </div>

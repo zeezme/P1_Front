@@ -35,7 +35,7 @@ export const routes = [
       </React.Suspense>
     ),
     show: true,
-    layout: true
+    layout: false
   },
   {
     id: 2,

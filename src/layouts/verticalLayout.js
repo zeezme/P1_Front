@@ -38,7 +38,7 @@ export const VerticalLayout = () => {
 
   return (
     <Fragment>
-      <KitNavbar />
+      <KitNavbar screenWidth={screenWidth} />
       {user && !isHomeRoute && <Sidebar />}
 
       <div

@@ -19,10 +19,12 @@ import {
 } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFieldsValues, setUser } from './store'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 
 import axios from 'axios'
+import { FaLeaf } from 'react-icons/fa'
+import { ImLeaf } from 'react-icons/im'
 
 export default function Login() {
   const [cookies, setCookie] = useCookies(['token'])
@@ -81,47 +83,66 @@ export default function Login() {
   }
 
   return (
-    <div className="d-flex flex-row justify-content-center align-items-start m-5 container-xxl">
-      <Card className="" style={{ width: '300px' }}>
-        <CardBody>
-          <Form>
-            <FormGroup>
-              <Label for="user" className="fw-bold">
-                Usuário
-              </Label>
-              <Input
-                {...loginErrorUser}
-                name="user"
-                onChange={(e) => {
-                  onChange('email', e.target.value)
-                }}
-              />
-              <FormFeedback>O nome de usuário não foi encontrado!</FormFeedback>
-            </FormGroup>
+    <Row className="d-flex justify-content-center align-items-center " style={{ height: '100vh' }}>
+      <Col lg={4}>
+        <Card>
+          <CardBody>
+            <div className="d-flex flex-row justify-content-center text-primary mt-5">
+              <span className="h1 fw-bolder">LEAF</span>
+              <ImLeaf className="ms-3" size={45} />
+            </div>
+            <div className="d-flex flex-row justify-content-center mt-2 mb-5">
+              <small>Acesso ao sistema</small>
+            </div>
+            <Form className="mx-5">
+              <FormGroup>
+                <Label for="user" className="text-primary">
+                  Usuário
+                </Label>
+                <Input
+                  {...loginErrorUser}
+                  name="user"
+                  onChange={(e) => {
+                    onChange('email', e.target.value)
+                  }}
+                />
+                <FormFeedback>O nome de usuário não foi encontrado!</FormFeedback>
+              </FormGroup>
 
-            <FormGroup>
-              <Label for="password" className="fw-bold">
-                Senha
-              </Label>
-              <Input
-                {...loginErrorPass}
-                type="password"
-                name="password"
-                onChange={(e) => onChange('password', e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === 'NumpadEnter') {
-                    submit()
-                  }
-                }}
-              />
-              <FormFeedback>Senha invalida!</FormFeedback>
-            </FormGroup>
-            <Button color="success" className="w-100 mt-3" onClick={submit}>
-              {loading ? <Spinner size="sm" /> : <ArrowRight className="text-light" />}
-            </Button>
-          </Form>
-        </CardBody>
-      </Card>
-    </div>
+              <FormGroup>
+                <Label for="password" className="text-primary">
+                  Senha
+                </Label>
+                <Input
+                  {...loginErrorPass}
+                  type="password"
+                  name="password"
+                  onChange={(e) => onChange('password', e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === 'NumpadEnter') {
+                      submit()
+                    }
+                  }}
+                />
+                <FormFeedback>Senha invalida!</FormFeedback>
+              </FormGroup>
+              <Button color="success" className="w-100 mt-3" onClick={submit}>
+                {loading ? <Spinner size="sm" /> : <span className="fw-bold">Acessar</span>}
+              </Button>
+              <div className="d-flex flex-row justify-content-center mt-5">
+                <span>Precisar de ajuda?</span>
+                <span className="link-success ms-1 cursor-pointer"> Clique aqui</span>
+              </div>
+            </Form>
+          </CardBody>
+          <CardFooter></CardFooter>
+        </Card>
+        <div className="d-flex flex-row justify-content-end mt-2">
+          <Button color="" tag={Link} to="/" className="text-primary fw-bolder">
+            Voltar
+          </Button>
+        </div>
+      </Col>
+    </Row>
   )
 }

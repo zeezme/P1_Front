@@ -1,7 +1,7 @@
 /* eslint-disable prefer-template */
 import React from 'react'
 import { Button, Navbar, NavbarBrand, NavbarText, Row } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import LogoutButton from '../logoutButton/logoutButton'
 import { capitalizeFirstLetter } from '../../../services/ordinary'
@@ -16,9 +16,14 @@ export default function KitNavbar() {
   const user = cookies['token']
   const sidebarResponsive = useSelector((state) => state.user.sidebar_responsive)
   const dispatch = useDispatch()
+  const location = useLocation()
+
+  const isHomeRoute = location.pathname === '/'
 
   return (
-    <Navbar style={{ backgroundColor: 'transparent' }} className="">
+    <Navbar
+      style={{ backgroundColor: '#ededed', zIndex: '2', position: 'fixed', width: '100vw' }}
+      className="">
       <div className="w-100 d-flex flex-row justify-content-between">
         <div className="d-flex justify-content-start align-items-center">
           <NavbarBrand href="/">
@@ -26,7 +31,7 @@ export default function KitNavbar() {
               LEAF <ImLeaf className="ms-2" />
             </NavbarText>
           </NavbarBrand>
-          {sidebarResponsive && (
+          {sidebarResponsive && !isHomeRoute && user && (
             <Button
               color="transparent"
               className="d-flex flex-row justify-content-center align-items-center cursor-pointer link-none text-primary on-hover p-0 m-0 pt-1"

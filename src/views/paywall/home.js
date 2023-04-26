@@ -1,24 +1,93 @@
 /* eslint-disable no-unused-vars */
-import React, { Fragment } from 'react'
-import { Menu, User } from 'react-feather'
-import { Button, Card, CardBody, CardFooter, CardHeader, Col, Row } from 'reactstrap'
+import React, { Fragment, useState } from 'react'
+import { ArrowRight, Menu, Save, User, X } from 'react-feather'
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Col,
+  Form,
+  Input,
+  Label,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Row
+} from 'reactstrap'
 import { useCookies } from 'react-cookie'
 import { capitalizeFirstLetter } from '../../services/ordinary'
 import { useDispatch, useSelector } from 'react-redux'
 import { BsPeople } from 'react-icons/bs'
-import { test } from './store'
+import { createPatient, setFieldsValues } from './store'
+import { show } from '../../@core/components/modals/utils'
 
 export default function PayWall() {
   const dispatch = useDispatch()
 
   const sidebarResponsive = useSelector((state) => state.user.sidebar_responsive)
 
+  const fieldsValues = useSelector((state) => state.paywall.fields)
+
+  const [isOpen, setIsOpen] = useState(false)
+
   const [cookies] = useCookies(['token'])
 
   const user = cookies['token']
 
+  const onChange = (field, value) => {
+    dispatch(
+      setFieldsValues({
+        field,
+        value
+      })
+    )
+  }
+
+  const handleCreatePatient = () => {
+    dispatch(createPatient({ ...fieldsValues }))
+    setIsOpen(false)
+  }
+
   return (
     <Fragment>
+      <Modal isOpen={isOpen} centered>
+        <ModalHeader className="me-2 p-0 d-flex flex-row justify-content-end">
+          <X
+            role="button"
+            size={20}
+            className="position-absolute"
+            style={{ top: '10px', right: '10px', zIndex: '1000' }}
+            onClick={() => setIsOpen(false)}
+          />
+        </ModalHeader>
+        <ModalBody>
+          <div className="d-flex flex-row justify-content-center">
+            <span className="text-primary h5 text-center w-100">Cadastro de paciente</span>
+          </div>
+          <div className="px-2">
+            <Label>CPF</Label>
+            <Input onChange={(e) => onChange('cpf', e.target.value)} className="mb-1" />
+            <Label>Nome</Label>
+            <Input onChange={(e) => onChange('name', e.target.value)} className="mb-1" />
+            <Label>Email</Label>
+            <Input onChange={(e) => onChange('email', e.target.value)} className="mb-1" />
+            <Label>Telefone</Label>
+            <Input onChange={(e) => onChange('phone', e.target.value)} className="mb-1" />
+            <Label>Endereço</Label>
+            <Input onChange={(e) => onChange('address', e.target.value)} className="mb-1" />
+            <Label>Preço</Label>
+            <Input onChange={(e) => onChange('price', e.target.value)} />
+            <div className="d-flex flex-row justify-content-end w-100">
+              <Button className="mt-4 " color="primary" onClick={() => handleCreatePatient()}>
+                <span className="">Cadastrar </span>
+                <Save size={20} />
+              </Button>
+            </div>
+          </div>
+        </ModalBody>
+      </Modal>
       <div className="mt-2 container-xxl">
         {!sidebarResponsive && (
           <Row>
@@ -139,22 +208,24 @@ export default function PayWall() {
               </CardHeader>
               <CardBody>
                 <div className="d-flex flex-column px-5">
-                  <Button className="mb-2" color="primary">
+                  <Button
+                    className="mb-2"
+                    color="primary"
+                    onClick={() => show.toast('Criado com sucesso!', 'success')}>
                     Marcar Paciente
                   </Button>
                   <Button className="mb-2" color="primary">
                     Desmarcar Paciente
                   </Button>
-                  <Button color="primary">Cadastrar Paciente</Button>
-                  <Button color="primary mt-2" onClick={() => dispatch(test('teste'))}>
-                    Testar Paciente
+                  <Button color="primary" onClick={() => setIsOpen(!isOpen)}>
+                    Cadastrar Paciente
                   </Button>
                 </div>
               </CardBody>
             </Card>
           </Col>
           <Col className="mb-4">
-            <Card>
+            <Card style={{ height: '1000px' }}>
               <CardHeader>
                 <span className="fw-bolder text-primary">Consultas no dia</span>
               </CardHeader>

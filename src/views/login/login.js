@@ -107,7 +107,13 @@ export default function Login() {
                 {...loginErrorPass}
                 type="password"
                 name="password"
-                onChange={(e) => onChange('password', e.target.value)}></Input>
+                onChange={(e) => onChange('password', e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === 'NumpadEnter') {
+                    submit()
+                  }
+                }}
+              />
               <FormFeedback>Senha invalida!</FormFeedback>
             </FormGroup>
             <Button color="success" className="w-100 mt-3" onClick={submit}>

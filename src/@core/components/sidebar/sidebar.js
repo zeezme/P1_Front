@@ -15,6 +15,11 @@ export default function Sidebar() {
     <div
       onMouseEnter={() => dispatch(setSidebar(true))}
       onMouseLeave={() => dispatch(setSidebar(false))}
+      style={{
+        position: 'fixed',
+        top: '0',
+        zIndex: '1'
+      }}
       className={
         sidebarStatus
           ? 'sidebar p-0'
@@ -22,7 +27,9 @@ export default function Sidebar() {
           ? 'sidebar-none'
           : 'sidebar-open sidebar p-0'
       }>
-      <div className="d-flex flex-column justify-content-center align-items-center">
+      <div
+        className="d-flex flex-column justify-content-center align-items-center"
+        style={{ paddingTop: '57px' }}>
         <SidebarProps icon={<Box />} title={'Consultas'} />
         <SidebarProps icon={<FaCashRegister size={20} />} title={'Caixa'} />
       </div>

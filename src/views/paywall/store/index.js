@@ -1,18 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import Api from '../../../services/api'
+import { show } from '../../../@core/components/modals/utils'
 
-export const test = createAsyncThunk('home/test', async (data) => {
-  const response = await Api.get('/patient/get')
-
-  console.log(response)
-  return data
+export const createPatient = createAsyncThunk('home/createPatient', async (data) => {
+  const response = await Api.post('/patient/create', data)
+  if (response.status === 200) {
+    show.toast(response.data.message, 'success')
+    return response.data
+  }
 })
 
 const initialState = {
+  test: {},
   fields: {
-    test: '',
-    porta: ''
+    name: '',
+    email: '',
+    phone: '',
+    cpf: '',
+    address: '',
+    price: ''
   }
 }
 
@@ -26,7 +33,7 @@ export const homeSlice = createSlice({
     reset: () => initialState
   },
   extraReducers: (builder) => {
-    builder.addCase(test.fulfilled, (state, action) => {
+    builder.addCase(createPatient.fulfilled, (state, action) => {
       state.test = action.payload
     })
   }

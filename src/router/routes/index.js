@@ -1,16 +1,9 @@
 import React from 'react'
-import { verifyJwt } from '../../services/verifyJwt'
 import Loading from '../../@core/components/loading'
 import Home from '../../views/home/home'
 
 const Login = React.lazy(() => import('../../views/login/login'))
 const PayWall = React.lazy(() => import('../../views/paywall/home'))
-
-const getShow = async () => {
-  const res = await verifyJwt()
-
-  return res.message === 'Authorized'
-}
 
 export const routes = [
   {
@@ -46,7 +39,7 @@ export const routes = [
         <PayWall />
       </React.Suspense>
     ),
-    show: await getShow(),
+    show: false,
     layout: true
   }
 ]

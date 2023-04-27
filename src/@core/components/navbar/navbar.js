@@ -33,7 +33,8 @@ export default function KitNavbar({ screenWidth }) {
   return (
     <Navbar
       style={{ backgroundColor: '#ededed', zIndex: '2', position: 'fixed', width: '100vw' }}
-      className="">
+      className=""
+    >
       <div className="w-100 d-flex flex-row justify-content-between">
         <div className="d-flex justify-content-start align-items-center">
           <NavbarBrand href="/">
@@ -45,7 +46,8 @@ export default function KitNavbar({ screenWidth }) {
             <Button
               color="transparent"
               className="d-flex flex-row justify-content-center align-items-center cursor-pointer link-none text-primary on-hover p-0 m-0 pt-1"
-              onClick={() => dispatch(togleSidebar(true))}>
+              onClick={() => dispatch(togleSidebar(true))}
+            >
               <Menu />
             </Button>
           )}
@@ -79,13 +81,15 @@ export default function KitNavbar({ screenWidth }) {
             <div className="d-flex justify-content-center align-items-center text-dark ">
               <Button
                 color="transparent"
-                className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover">
+                className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover"
+              >
                 <p className="m-0 text-primary h5 fw-normal">Preços</p>
               </Button>
 
               <Button
                 color="transparent"
-                className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover">
+                className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover"
+              >
                 <p className="m-0 text-primary h5 fw-normal">Empresa</p>
               </Button>
             </div>
@@ -95,7 +99,8 @@ export default function KitNavbar({ screenWidth }) {
               color="transparent"
               tag={Link}
               className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover "
-              to="/login">
+              to="/login"
+            >
               <p className="m-0 text-primary h5 fw-normal">
                 {user?.username ? capitalizeFirstLetter(user.username) : 'Login'}
               </p>

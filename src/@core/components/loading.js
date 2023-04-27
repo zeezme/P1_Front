@@ -5,7 +5,8 @@ export default function Loading() {
   return (
     <div
       className="d-flex flex-row justify-content-center align-items-center"
-      style={{ height: '80vh' }}>
+      style={{ height: '80vh' }}
+    >
       <Spinner
         type="border"
         color="primary"

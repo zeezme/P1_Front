@@ -26,10 +26,12 @@ export default function Sidebar() {
           : sidebarResponsive
           ? 'sidebar-none'
           : 'sidebar-open sidebar p-0'
-      }>
+      }
+    >
       <div
         className="d-flex flex-column justify-content-center align-items-center"
-        style={{ paddingTop: '57px' }}>
+        style={{ paddingTop: '57px' }}
+      >
         <SidebarProps icon={<Box />} title={'Consultas'} />
         <SidebarProps icon={<FaCashRegister size={20} />} title={'Caixa'} />
       </div>

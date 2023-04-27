@@ -64,7 +64,8 @@ export const show = {
   toast: (message, color) => {
     toast.success(
       <span
-        className={`text-${color ? color : 'success'}  p-0 m-0 d-flex flex-row align-items-center`}>
+        className={`text-${color ? color : 'success'}  p-0 m-0 d-flex flex-row align-items-center`}
+      >
         {message}
       </span>
     )

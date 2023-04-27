@@ -211,7 +211,8 @@ export default function PayWall() {
                   <Button
                     className="mb-2"
                     color="primary"
-                    onClick={() => show.toast('Criado com sucesso!', 'success')}>
+                    onClick={() => show.toast('Criado com sucesso!', 'success')}
+                  >
                     Marcar Paciente
                   </Button>
                   <Button className="mb-2" color="primary">

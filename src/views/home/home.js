@@ -9,7 +9,7 @@ export default function Home() {
         <Col>
           <div className="d-flex flex-row justify-content-center">
             <span className="h2 text-primary">
-              Bem vindo ao Leaf <ImLeaf className="ms-1" /> TEST
+              Bem vindo ao Leaf <ImLeaf className="ms-1" />
             </span>
           </div>
         </Col>

@@ -4,9 +4,13 @@ import { show } from '../@core/components/modals/utils'
 
 const cookies = new Cookies()
 const token = cookies.get('token')
+// eslint-disable-next-line no-undef
+const apiAddress = process.env.REACT_APP_URL_API
+// eslint-disable-next-line no-undef
+const apiPort = process.env.REACT_APP_URL_API_PORT
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: `http://${apiAddress}:${apiPort}/api`,
   timeout: 8000,
   headers: {
     'x-access-token': token?.accessToken

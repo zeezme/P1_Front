@@ -3,11 +3,8 @@ import Cookies from 'universal-cookie'
 
 export const verifyJwt = async () => {
   const cookies = new Cookies()
+
   const userData = cookies.get('token')
-  // eslint-disable-next-line no-undef
-  const apiAddress = process.env.REACT_APP_URL_API
-  // eslint-disable-next-line no-undef
-  const apiPort = process.env.REACT_APP_URL_API_PORT
 
   const parseJwt = (token) => {
     try {
@@ -18,7 +15,7 @@ export const verifyJwt = async () => {
   }
 
   const api = axios.create({
-    baseURL: `http://${apiAddress}:${apiPort}/api/test`,
+    baseURL: 'http://localhost:8080/api/test',
     timeout: 8000,
     headers: {
       'x-access-token': userData?.accessToken

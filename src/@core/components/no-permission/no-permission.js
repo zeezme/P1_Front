@@ -1,12 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
-import Loading from '../loading'
 
 export default function NoPermission() {
   return (
-    <Loading />
-    /*     <div
+    <div
       className="d-flex flex-column align-items-center justify-content-center text-dark"
       style={{ height: '80vh' }}
     >
@@ -14,6 +12,6 @@ export default function NoPermission() {
       <Button className="m-3" color="success" tag={Link} to="/login">
         Fazer login
       </Button>
-    </div> */
+    </div>
   )
 }

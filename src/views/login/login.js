@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { ArrowRight } from 'react-feather'
 import {
   Button,
   Card,
   CardBody,
   CardFooter,
+  CardHeader,
+  CardText,
+  CardTitle,
   Col,
   Form,
   FormFeedback,
@@ -19,15 +23,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 
 import axios from 'axios'
+import { FaLeaf } from 'react-icons/fa'
 import { ImLeaf } from 'react-icons/im'
-import { show } from '../../@core/components/modals/utils'
 
 export default function Login() {
-  // eslint-disable-next-line no-undef
-  const apiAddress = process.env.REACT_APP_URL_API
-  // eslint-disable-next-line no-undef
-  const apiPort = process.env.REACT_APP_URL_API_PORT
-
   const [cookies, setCookie] = useCookies(['token'])
   const dispatch = useDispatch()
 
@@ -60,7 +59,7 @@ export default function Login() {
   const submit = async () => {
     setLoading(true)
     try {
-      const res = await axios.post(`http://${apiAddress}:${apiPort}/api/auth/signin`, {
+      const res = await axios.post('http://localhost:8080/api/auth/signin', {
         username: loginFields.email,
         password: loginFields.password
       })
@@ -72,10 +71,6 @@ export default function Login() {
         return res.data
       }
     } catch (error) {
-      if (error.code === 'ERR_NETWORK') {
-        setLoading(false)
-        show.error('Falha ao conectar ao servidor, por favor tente novamente mais tarde.')
-      }
       if (error.response.data.message === 'User Not found.') {
         setLoading(false)
         setLoginErrorUser({ invalid: true })
@@ -88,11 +83,8 @@ export default function Login() {
   }
 
   return (
-    <Row
-      className="d-flex justify-content-center align-items-center m-0"
-      style={{ height: '100vh', width: '100%' }}
-    >
-      <Col lg={4} md={8} className="p-0">
+    <Row className="d-flex justify-content-center align-items-center " style={{ height: '100vh' }}>
+      <Col lg={4}>
         <Card>
           <CardBody>
             <div className="d-flex flex-row justify-content-center text-primary mt-5">

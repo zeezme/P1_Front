@@ -15,7 +15,7 @@ export const routes = [
         <Home />
       </React.Suspense>
     ),
-    show: true,
+    privateRoute: false,
     layout: true
   },
   {
@@ -27,7 +27,7 @@ export const routes = [
         <Login />
       </React.Suspense>
     ),
-    show: true,
+    privateRoute: false,
     layout: false
   },
   {
@@ -39,7 +39,7 @@ export const routes = [
         <PayWall />
       </React.Suspense>
     ),
-    show: false,
+    privateRoute: true,
     layout: true
   }
 ]

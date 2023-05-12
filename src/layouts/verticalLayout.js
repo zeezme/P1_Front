@@ -51,7 +51,7 @@ export const VerticalLayout = () => {
             : { marginLeft: '0' }
         }
       >
-        <div style={{ marginTop: '50px', width: '100%' }}>
+        <div style={{ marginTop: '50px', width: '90%' }}>
           <Outlet />
         </div>
       </div>

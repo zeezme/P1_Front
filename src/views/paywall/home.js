@@ -211,14 +211,15 @@ export default function PayWall() {
                   <Button
                     className="mb-2"
                     color="primary"
+                    size="sm"
                     onClick={() => show.toast('Criado com sucesso!', 'success')}
                   >
                     Marcar Paciente
                   </Button>
-                  <Button className="mb-2" color="primary">
+                  <Button className="mb-2" size="sm" color="primary">
                     Desmarcar Paciente
                   </Button>
-                  <Button color="primary" onClick={() => setIsOpen(!isOpen)}>
+                  <Button color="primary" size="sm" onClick={() => setIsOpen(!isOpen)}>
                     Cadastrar Paciente
                   </Button>
                 </div>
@@ -226,7 +227,7 @@ export default function PayWall() {
             </Card>
           </Col>
           <Col className="mb-4">
-            <Card style={{ height: '1000px' }}>
+            <Card>
               <CardHeader>
                 <span className="fw-bolder text-primary">Consultas no dia</span>
               </CardHeader>

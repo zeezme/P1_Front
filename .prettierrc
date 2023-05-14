@@ -4,6 +4,6 @@
     "printWidth": 100,
     "singleQuote": true,
     "trailingComma": "none",   
-    "endOfLine": "lf"
+    "endOfLine": "crlf"
     
   }

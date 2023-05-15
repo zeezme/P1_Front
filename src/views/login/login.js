@@ -68,6 +68,7 @@ export default function Login() {
         username: loginFields.email,
         password: loginFields.password
       })
+      console.log(res)
       if (res.status === 200) {
         setLoading(false)
 

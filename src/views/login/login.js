@@ -78,6 +78,7 @@ export default function Login() {
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {
         setLoading(false)
+        console.log(error)
         show.error('Falha ao conectar ao servidor, por favor tente novamente mais tarde.')
       }
       if (error.response.data.message === 'User Not found.') {

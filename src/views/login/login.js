@@ -57,11 +57,20 @@ export default function Login() {
   const [loginErrorPass, setLoginErrorPass] = useState({ invalid: false })
   const [loading, setLoading] = useState(false)
   const test = async () => {
-    const res = await axios.post('http://54.161.177.232:8080/api/auth/signin', {
-      username: loginFields.email,
-      password: loginFields.password
+    fetch('http://54.161.177.232:8080/api/auth/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: '{"username":"root","password":"teste"}'
     })
-    console.log(res)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
   }
 
   const submit = async () => {

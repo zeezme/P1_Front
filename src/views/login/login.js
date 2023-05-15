@@ -56,6 +56,13 @@ export default function Login() {
   const [loginErrorUser, setLoginErrorUser] = useState({ invalid: false })
   const [loginErrorPass, setLoginErrorPass] = useState({ invalid: false })
   const [loading, setLoading] = useState(false)
+  const test = async () => {
+    const res = await axios.post('http://54.161.177.232:8080/api/auth/signin', {
+      username: loginFields.email,
+      password: loginFields.password
+    })
+    console.log(res)
+  }
 
   const submit = async () => {
     if (apiAddress === undefined || apiPort === undefined) {
@@ -145,8 +152,10 @@ export default function Login() {
                 {loading ? <Spinner size="sm" /> : <span className="fw-bold">Acessar</span>}
               </Button>
               <div className="d-flex flex-row justify-content-center mt-5">
-                <span>Precisar de ajuda?</span>
-                <span className="link-success ms-1 cursor-pointer"> Clique aqui</span>
+                <span>Precisar de ajuda? (TESTE)</span>
+                <span onClick={() => test()} className="link-success ms-1 cursor-pointer">
+                  Clique aqui
+                </span>
               </div>
             </Form>
           </CardBody>

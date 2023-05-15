@@ -58,6 +58,10 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
 
   const submit = async () => {
+    if (apiAddress === undefined || apiPort === undefined) {
+      show.error('Servidor não foi instalado corretamente, por favor verifique o env.')
+      return
+    }
     setLoading(true)
     try {
       const res = await axios.post(`http://${apiAddress}:${apiPort}/api/auth/signin`, {
@@ -90,8 +94,7 @@ export default function Login() {
   return (
     <Row
       className="d-flex justify-content-center align-items-center m-0"
-      style={{ height: '100vh', width: '100%' }}
-    >
+      style={{ height: '100vh', width: '100%' }}>
       <Col lg={4} md={8} className="p-0">
         <Card>
           <CardBody>

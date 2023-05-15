@@ -78,6 +78,8 @@ export default function Login() {
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {
         setLoading(false)
+        console.log(apiAddress)
+        console.log(apiPort)
         console.log(error)
         show.error('Falha ao conectar ao servidor, por favor tente novamente mais tarde.')
       }

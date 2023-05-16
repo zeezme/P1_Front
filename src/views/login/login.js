@@ -59,6 +59,7 @@ export default function Login() {
   const test = async () => {
     fetch('http://54.161.177.232:8080/api/auth/signin', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },

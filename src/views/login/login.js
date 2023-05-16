@@ -56,22 +56,6 @@ export default function Login() {
   const [loginErrorUser, setLoginErrorUser] = useState({ invalid: false })
   const [loginErrorPass, setLoginErrorPass] = useState({ invalid: false })
   const [loading, setLoading] = useState(false)
-  const test = async () => {
-    fetch('http://54.161.177.232:8080/api/auth/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: '{"username":"root","password":"teste"}'
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-      })
-      .catch((error) => {
-        console.error('Error:', error)
-      })
-  }
 
   const submit = async () => {
     if (apiAddress === undefined || apiPort === undefined) {
@@ -84,7 +68,6 @@ export default function Login() {
         username: loginFields.email,
         password: loginFields.password
       })
-      console.log(res)
       if (res.status === 200) {
         setLoading(false)
 
@@ -95,9 +78,6 @@ export default function Login() {
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {
         setLoading(false)
-        console.log(apiAddress)
-        console.log(apiPort)
-        console.log(error)
         show.error('Falha ao conectar ao servidor, por favor tente novamente mais tarde.')
       }
       if (error.response.data.message === 'User Not found.') {
@@ -161,10 +141,8 @@ export default function Login() {
                 {loading ? <Spinner size="sm" /> : <span className="fw-bold">Acessar</span>}
               </Button>
               <div className="d-flex flex-row justify-content-center mt-5">
-                <span>Precisar de ajuda? (TESTE)</span>
-                <span onClick={() => test()} className="link-success ms-1 cursor-pointer">
-                  Clique aqui
-                </span>
+                <span>Precisar de ajuda?</span>
+                <span className="link-success ms-1 cursor-pointer">Clique aqui</span>
               </div>
             </Form>
           </CardBody>

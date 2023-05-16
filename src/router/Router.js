@@ -33,10 +33,6 @@ export const Router = () => {
     }
     resolveRoutes()
   }, [])
-  /* // eslint-disable-next-line no-undef
-const url = process.env.REACT_APP_URL_API
-// eslint-disable-next-line no-undef
-const port = process.env.REACT_APP_URL_API_PORT */
   return (
     <HashRouter basename="/">
       {isLoading ? (

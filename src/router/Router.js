@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { VerticalLayout } from '../layouts/verticalLayout'
 import { routes } from './routes'
 
@@ -33,9 +33,12 @@ export const Router = () => {
     }
     resolveRoutes()
   }, [])
-
+  /* // eslint-disable-next-line no-undef
+const url = process.env.REACT_APP_URL_API
+// eslint-disable-next-line no-undef
+const port = process.env.REACT_APP_URL_API_PORT */
   return (
-    <BrowserRouter>
+    <HashRouter basename="/">
       {isLoading ? (
         <Loading />
       ) : (
@@ -50,6 +53,6 @@ export const Router = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       )}
-    </BrowserRouter>
+    </HashRouter>
   )
 }

@@ -69,10 +69,22 @@ export default function Login() {
         password: loginFields.password
       })
       if (res.status === 200) {
+        // eslint-disable-next-line no-unused-vars
+
+        const userObj = {
+          email: res.data.email,
+          id: res.data.id,
+          roles: res.data.roles,
+          username: res.data.username
+        }
+
+        localStorage.setItem('user', JSON.stringify(userObj))
+
         setLoading(false)
 
         setCookie('token', res.data)
         dispatch(setUser(res.data))
+
         return res.data
       }
     } catch (error) {

@@ -10,6 +10,7 @@ export default function LogoutButton() {
 
   const logout = () => {
     cookies.remove('token')
+    localStorage.removeItem('user')
     navigate('/')
     window.location.reload()
   }

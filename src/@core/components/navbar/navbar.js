@@ -11,7 +11,7 @@ import {
   Row,
   UncontrolledDropdown
 } from 'reactstrap'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import LogoutButton from '../logoutButton/logoutButton'
 import { capitalizeFirstLetter } from '../../../services/ordinary'
@@ -24,13 +24,12 @@ import { Info, Menu } from 'react-feather'
 export default function KitNavbar({ screenWidth }) {
   const [cookies] = useCookies(['token'])
   const user = cookies['token']
-  const logged = useSelector((state) => state.login.user)
   const sidebarResponsive = useSelector((state) => state.user.sidebar_responsive)
   const dispatch = useDispatch()
   const location = useLocation()
 
   const isHomeRoute = location.pathname === '/'
-
+  const navigate = useNavigate()
   return (
     <Navbar
       style={{ backgroundColor: '#ededed', zIndex: '2', position: 'fixed', width: '100vw' }}
@@ -68,7 +67,7 @@ export default function KitNavbar({ screenWidth }) {
                   <p className="m-0 text-primary h5 fw-normal">Empresa</p>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem tag={Link} to={logged ? '/paywall' : '/login'}>
+                <DropdownItem onClick={() => (user ? navigate('/') : navigate('/login'))}>
                   <p className="m-0 text-primary h5 fw-normal">
                     {user?.username ? capitalizeFirstLetter(user.username) : 'Login'}
                   </p>
@@ -94,9 +93,8 @@ export default function KitNavbar({ screenWidth }) {
           {screenWidth >= 400 && (
             <Button
               color="transparent"
-              tag={Link}
               className="d-flex flex-column justify-content-center align-items-center cursor-pointer link-none text-primary on-hover "
-              to={logged ? '/paywall' : '/login'}>
+              onClick={() => (user ? navigate('/') : navigate('/login'))}>
               <p className="m-0 text-primary h5 fw-normal">
                 {user?.username ? capitalizeFirstLetter(user.username) : 'Login'}
               </p>

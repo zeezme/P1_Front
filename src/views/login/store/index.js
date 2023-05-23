@@ -10,7 +10,7 @@ const initialState = {
     password: ''
   },
   login: false,
-  user: {}
+  user: []
 }
 
 export const loginSlice = createSlice({

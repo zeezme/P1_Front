@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Button,
   Card,
@@ -28,21 +28,15 @@ export default function Login() {
   // eslint-disable-next-line no-undef
   const apiPort = process.env.REACT_APP_URL_API_PORT
 
+  // eslint-disable-next-line no-unused-vars
   const [cookies, setCookie] = useCookies(['token'])
   const dispatch = useDispatch()
 
   const loginFields = useSelector((state) => state.login.fields)
 
-  const user = cookies['token']
+  /*   const user = cookies['token'] */
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    if (user !== undefined) {
-      navigate('/paywall')
-      window.location.reload()
-    }
-  }, [user])
 
   const onChange = (field, value) => {
     dispatch(
@@ -78,14 +72,14 @@ export default function Login() {
           username: res.data.username
         }
 
-        localStorage.setItem('user', JSON.stringify(userObj))
-
         setLoading(false)
 
         setCookie('token', res.data)
-        dispatch(setUser(res.data))
+        dispatch(setUser(userObj))
 
-        return res.data
+        navigate('/paywall')
+
+        window.location.reload()
       }
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {

@@ -1,16 +1,19 @@
 import React from 'react'
 import { ImExit } from 'react-icons/im'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Button, Col } from 'reactstrap'
 import Cookies from 'universal-cookie'
+import { setUser } from '../../../views/login/store'
 
 export default function LogoutButton() {
   const cookies = new Cookies()
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const logout = () => {
     cookies.remove('token')
     localStorage.removeItem('user')
+    dispatch(setUser(''))
     navigate('/')
     window.location.reload()
   }

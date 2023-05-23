@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { ArrowRight, Menu, Save, User, X } from 'react-feather'
 import {
   Button,
@@ -20,8 +19,10 @@ import { useCookies } from 'react-cookie'
 import { capitalizeFirstLetter } from '../../services/ordinary'
 import { useDispatch, useSelector } from 'react-redux'
 import { BsPeople } from 'react-icons/bs'
-import { createPatient, setFieldsValues } from './store'
+import { createPatient, getPatients, setFieldsValues } from './store'
 import { show } from '../../@core/components/modals/utils'
+import DataTable from 'react-data-table-component'
+import { tableCustomStyles } from '../../@core/table-styles/customDataTable'
 
 export default function PayWall() {
   const dispatch = useDispatch()
@@ -29,6 +30,10 @@ export default function PayWall() {
   const sidebarResponsive = useSelector((state) => state.user.sidebar_responsive)
 
   const fieldsValues = useSelector((state) => state.paywall.fields)
+
+  const patients = useSelector((state) => state.paywall.patients)
+
+  const loginInfo = useSelector((state) => state.login.user)
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -46,8 +51,37 @@ export default function PayWall() {
   }
 
   const handleCreatePatient = () => {
-    dispatch(createPatient({ ...fieldsValues }))
+    dispatch(createPatient({ ...fieldsValues, parent_id: loginInfo.id }))
     setIsOpen(false)
+  }
+
+  useEffect(() => {
+    dispatch(getPatients({ parent_id: loginInfo.id }))
+  }, [])
+
+  const columns = [
+    {
+      name: 'Name',
+      selector: 'name'
+    },
+    {
+      name: 'Email',
+      selector: 'email'
+    },
+    {
+      name: 'Telefone',
+      selector: 'phone'
+    },
+    {
+      name: 'CPF',
+      selector: 'cpf'
+    }
+  ]
+
+  const handleCPF = (e) => {
+    const { value } = e.target
+    const formattedCPF = value.slice(0, 14).replace(/(\d{3})(\d{3})(\d{3})/, '$1.$2.$3-')
+    onChange('cpf', formattedCPF)
   }
 
   return (
@@ -68,7 +102,7 @@ export default function PayWall() {
           </div>
           <div className="px-2">
             <Label>CPF</Label>
-            <Input onChange={(e) => onChange('cpf', e.target.value)} className="mb-1" />
+            <Input onChange={(e) => handleCPF(e)} value={fieldsValues.cpf} className="mb-1" />
             <Label>Nome</Label>
             <Input onChange={(e) => onChange('name', e.target.value)} className="mb-1" />
             <Label>Email</Label>
@@ -212,8 +246,7 @@ export default function PayWall() {
                     className="mb-2"
                     color="primary"
                     size="sm"
-                    onClick={() => show.toast('Criado com sucesso!', 'success')}
-                  >
+                    onClick={() => show.toast('Criado com sucesso!', 'success')}>
                     Marcar Paciente
                   </Button>
                   <Button className="mb-2" size="sm" color="primary">
@@ -227,9 +260,15 @@ export default function PayWall() {
             </Card>
           </Col>
           <Col className="mb-4">
-            <Card>
+            <Card className="h-100">
               <CardHeader>
-                <span className="fw-bolder text-primary">Consultas no dia</span>
+                <span className="fw-bolder text-primary">Pacientes</span>
+                <DataTable
+                  data={patients}
+                  columns={columns}
+                  customStyles={tableCustomStyles}
+                  striped
+                />
               </CardHeader>
               <CardBody></CardBody>
             </Card>

@@ -6,11 +6,14 @@ import { routes } from './routes'
 const NotFound = React.lazy(() => import('../@core/components/not-found/not-found'))
 import { verifyJwt } from '../services/verifyJwt'
 import Loading from '../@core/components/loading'
+import { useSelector } from 'react-redux'
+
 const NoPermission = React.lazy(() => import('../@core/components/no-permission/no-permission'))
 
 export const Router = () => {
   const [resolvedRoutes, setResolvedRoutes] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
+  const hasLoggedIn = useSelector((state) => state.login.login)
 
   React.useEffect(() => {
     const resolveRoutes = async () => {
@@ -32,7 +35,8 @@ export const Router = () => {
       setIsLoading(false)
     }
     resolveRoutes()
-  }, [])
+  }, [hasLoggedIn])
+
   return (
     <HashRouter basename="/">
       {isLoading ? (

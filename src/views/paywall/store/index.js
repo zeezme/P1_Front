@@ -7,12 +7,20 @@ export const createPatient = createAsyncThunk('home/createPatient', async (data)
   const response = await Api.post('/patient/create', data)
   if (response.status === 200) {
     show.toast(response.data.message, 'success')
+    const update = await Api.post('/patient/get', { parent_id: data.parent_id })
+    return update.data
+  }
+})
+
+export const getPatients = createAsyncThunk('home/getPatients', async (data) => {
+  const response = await Api.post('/patient/get', data)
+
+  if (response.status === 200) {
     return response.data
   }
 })
 
 const initialState = {
-  test: {},
   fields: {
     name: '',
     email: '',
@@ -34,7 +42,10 @@ export const homeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(createPatient.fulfilled, (state, action) => {
-      state.test = action.payload
+      state.patients = action.payload
+    })
+    builder.addCase(getPatients.fulfilled, (state, action) => {
+      state.patients = action.payload
     })
   }
 })

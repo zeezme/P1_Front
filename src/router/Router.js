@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { VerticalLayout } from '../layouts/verticalLayout'
 import { routes } from './routes'
 
@@ -38,7 +38,7 @@ export const Router = () => {
   }, [hasLoggedIn])
 
   return (
-    <HashRouter basename="/">
+    <BrowserRouter basename="/">
       {isLoading ? (
         <Loading />
       ) : (
@@ -53,6 +53,6 @@ export const Router = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       )}
-    </HashRouter>
+    </BrowserRouter>
   )
 }

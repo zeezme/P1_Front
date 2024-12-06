@@ -1,14 +1,5 @@
-## Leaf UI: Simplifying React Development
-
-Introducing **Leaf UI**: a cutting-edge React theme designed to simplify your development process. With a sleek and intuitive user interface, Leaf UI allows you to focus on your code without the hassle of complex configurations.
-
-Built with **React**, **RTK**, **Bootstrap**, **Sass**, and **Reactstrap**, Leaf UI offers a seamless development experience. Leveraging the power of **Redux** and **Redux Persist**, your application state is efficiently managed and persists across page reloads.
-
-Leaf UI's responsive design and pre-built components make it easy to create professional-looking interfaces. The theme's customizable Sass stylesheets enable effortless styling adjustments to suit your project's needs.
-
-Under active development, Leaf UI also features its own backend for seamless integration. Stay tuned for additional features and enhancements as Leaf UI continues to evolve.
-
-Experience the simplicity and efficiency of Leaf UI — your go-to theme for streamlined React development.
+## Leaf UI:
+Base Theme for Projects with JS
 
 ### Features:
 
@@ -27,14 +18,6 @@ Experience the simplicity and efficiency of Leaf UI — your go-to theme for str
 - **Login System**: Leaf UI comes equipped with a robust login system, enabling secure user authentication and access control.
 
 Experience the simplicity and productivity of Leaf UI. Focus on your code and let the theme handle the rest. Streamline your React development with Leaf UI, empowering you to build impressive applications effortlessly.
-
-### Try it
-[Clicking Here](http://134.65.237.168/)
-
-**Test Credentials:**
-- User: tester
-- Pass: tester
-
 
 ### Images:
 
